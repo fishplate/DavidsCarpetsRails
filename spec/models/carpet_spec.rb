@@ -14,6 +14,7 @@ describe Carpet do
     it "can create a new carpet" do
       carpet = Carpet.new(@att)
       carpet.save.should == true
+      carpet.available_colours.should == %w( red blue brown)
     end
 
     it "can update an existing carpet" do
