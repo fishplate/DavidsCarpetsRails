@@ -17,3 +17,4 @@
 # Custom ignore
 .DS_Store
 /config/initializers/secret_token_prod.rb
+/config/env.rb

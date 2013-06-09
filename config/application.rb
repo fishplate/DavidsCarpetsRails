@@ -22,7 +22,7 @@ module DavidsCarpetsRails
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    # config.autoload_paths += %W(#{config.root}/extras)
+     config.autoload_paths += %W(#{config.root}/lib)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -59,9 +59,12 @@ module DavidsCarpetsRails
     # parameters by using an attr_accessible or attr_protected declaration.
     config.active_record.whitelist_attributes = true
 
+    config.assets.initialize_on_precompile = true
+
     # Enable the asset pipeline
     config.assets.enabled = true
-
+    config.assets.digest = true
+    
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
   end
