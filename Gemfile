@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
-gem 'therubyracer'
+gem 'therubyracer', '0.10.2'
 gem 'execjs'
 gem 'mysql2'
 gem 'jquery-rails'
