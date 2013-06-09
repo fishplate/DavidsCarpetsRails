@@ -34,4 +34,7 @@ DavidsCarpetsRails::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  # adding in test API key for specs
+  config.api_token = "123456"
 end
