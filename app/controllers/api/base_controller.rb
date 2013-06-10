@@ -33,4 +33,10 @@ class Api::BaseController < ActionController::Base
     end
   end
 
+  # Exceptions not to be included in
+  # json response
+  def exceptions
+    [:created_at, :updated_at]
+  end
+
 end

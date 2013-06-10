@@ -4,12 +4,15 @@ class Api::CarpetsController < Api::BaseController
 
   # Provide index of available carpets in range?
   def index
-
-  end
-
-  # Provide information on given carpet in range
-  def show
-
+    if params[:range_id] && !params[:range_id].empty?
+      range = CarpetRange.find(params[:range_id])
+      @carpets = range.carpets.all
+      render :json => {carpets: @carpets.as_json(:except => exceptions)}
+    else
+      render :status => 406, :json=>{
+        :errors => ["No range provided"]
+      }
+    end
   end
 
 end

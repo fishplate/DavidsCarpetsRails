@@ -1,19 +1,28 @@
 require 'spec_helper'
 
-describe Api::RangesController do
+describe Api::CarpetsController do
+  before(:each) do
+    carpet = {
+      name: "new_carpet",
+      price: 1.99,
+      available_colours: %w( red blue brown)
+    }
+    @range = CarpetRange.create!(name: "test_range")
+    @range.carpets.create!(carpet)
+  end
 
   context "with invalid args index" do
 
     it "should return error if not json request" do
       err_msg = "Sorry the request must be in json"
-      get :index
+      get :index, range_id: @range.id
       result = JSON.parse(response.body)["errors"]
       result.first.should == err_msg
     end
 
     it "should return error if no key is provided" do
       err_msg = "HTTP Token: Access denied."
-      get :index, :format => :json
+      get :index, range_id: @range.id, :format => :json
       result = JSON.parse(response.body)["errors"]
       result.first.should == err_msg
     end
@@ -23,19 +32,13 @@ describe Api::RangesController do
   context "with valid args index" do
     before(:each) do
       request.env['HTTP_X_API_TOKEN'] = "123456"
-      6.times do |n|
-        CarpetRange.create!(name: "range#{n}")
-      end
     end
 
-    it "should return list of ranges and id" do
-      id = CarpetRange.first.id
-      expected = {id: id, name: "range0"}.as_json
-      get :index, :format => :json
-      result = JSON.parse(response.body)
-      result["range"].count.should == 6
-      result["range"].first.should == expected
+    it "should return list of carpets for given range" do
+      get :index, range_id: @range.id, :format => :json
+      result = JSON.parse(response.body)["carpets"]
+      result.count.should == 1
+      result.first["name"].should == "new_carpet"
     end
-
   end
 end
