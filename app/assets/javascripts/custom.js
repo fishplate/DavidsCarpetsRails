@@ -1,15 +1,7 @@
-/* Honey Trap */
 $(document).ready(function (){
   $('.inputGhost').on('change', function() {
     $("input[type=submit]").prop('disabled', $(this).val().length > 0);
   });
-
-/* Fadeout Flash Notice */
-  setTimeout(function() {
-    $('#flash').fadeOut('slow');}, 3000
-  );
-});
-
 
 
 $(document).ready(function (){

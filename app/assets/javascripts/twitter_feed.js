@@ -53,22 +53,15 @@ JQTWEET = {
 
                     
 
-                    $(".twitterImage").hide();
+                   $(".twitterImage").hide();
 
-                    $(".showLink").live('click', function (e) {
-                        e.preventDefault();
-                        $(this).next(".twitterImage").show();
-                        $(this).text('Hide Photo').css('display', 'block').removeClass("showLink").addClass("hideLink");
-
-                    });
-
-                    $(".hideLink").live('click', function (e) {
-                        e.preventDefault();
-                        $(this).next(".twitterImage").hide();
-                        $(this).text('View Photo').removeClass("hideLink").addClass("showLink");
-
-                    });
-
+$(".imageLink").click( function(e){
+    e.preventDefault();
+    var text = $(this).text();
+    text = text == 'Show Photo' ? 'Hide Photo' : 'Show Photo';
+    $(this).text(text);
+    $(this).next(".twitterImage").toggle(500);
+});
 
 
                 }

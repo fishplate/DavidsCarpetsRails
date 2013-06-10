@@ -1,15 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>DavidsCarpetsRails</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+  <% flash.each do |name, msg| %>
+    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+      <a class="close" data-dismiss="alert">×</a>
+      <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+    </div>
+  <% end %>
 </head>
-<body>
+<body onload="initialize()">
 
 <%= yield %>
 <%= render 'shared/footer' %>
+
+<script type="text/javascript"
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApUO4ajt4kh5KnLE-zJbdmDKrVf7zqsvA&sensor=false">
+</script>
+<script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(51.776778, -3.207696),
+          zoom: 15,
+          scrollwheel: false,
+          draggable: false,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        var map = new google.maps.Map(document.getElementById("map_canvas"),
+            mapOptions);
+
+        var marker = new google.maps.Marker({
+          position: map.getCenter(),
+          map: map,
+          title: 'Davids Carpets'
+        });
+
+        var center;
+        function calculateCenter() {
+         center = map.getCenter();
+        }
+         google.maps.event.addDomListener(map, 'idle', function() {
+         calculateCenter();
+        });
+         google.maps.event.addDomListener(window, 'resize', function() {
+         map.setCenter(center);
+        });
+
+      }
+    </script>
+
+
 
 </body>
 </html>
