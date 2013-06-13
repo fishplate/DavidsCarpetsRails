@@ -27,6 +27,14 @@ describe Api::CarpetsController do
       result.first.should == err_msg
     end
 
+    it "should return error if no range is found" do
+      request.env['HTTP_X_API_TOKEN'] = "123456"
+      err_msg = "No range found"
+      get :index, range_id: "awe", :format => :json
+      result = JSON.parse(response.body)["errors"]
+      result.first.should == err_msg
+    end
+
   end
 
   context "with valid args index" do
