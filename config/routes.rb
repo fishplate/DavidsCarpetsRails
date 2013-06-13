@@ -1,5 +1,8 @@
 DavidsCarpetsRails::Application.routes.draw do
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
   # API routes for ios app
   namespace :api do
     resources :ranges, :only => [:index] do

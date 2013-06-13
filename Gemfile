@@ -4,7 +4,9 @@ gem 'rails', '3.2.13'
 gem 'therubyracer', '0.10.2'
 gem 'execjs'
 gem 'mysql2'
-gem 'jquery-rails'
+# downgrade jquery to work with active admin
+gem 'jquery-rails', '2.3.0'
+gem 'activeadmin'
 
 # Gems used only for assets and not required
 # in production environments by default.

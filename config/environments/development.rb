@@ -34,4 +34,7 @@ DavidsCarpetsRails::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # adding in test API key for dev
+  config.api_token = "123456"
 end
