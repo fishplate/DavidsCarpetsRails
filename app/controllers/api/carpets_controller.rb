@@ -2,7 +2,10 @@
 # Inherited from api base controller.
 class Api::CarpetsController < Api::BaseController
 
-  # Provide index of available carpets in range?
+# curl
+#  -H "Content-type: application/json"
+#  -H "x-api-token: 123456"
+# http://localhost:3000/api/ranges/:range_id/carpets.json
   def index
     range = CarpetRange.find_by_id(params[:range_id].to_i)
     if range
